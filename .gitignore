@@ -2,4 +2,13 @@ Thumbs.db
 *.log
 *.bak
 .DS_Store
+Image
+*.map
+boot/bootsect
+boot/setup
+*.o
+*.a
+tools/system
+.vscode
+
 
