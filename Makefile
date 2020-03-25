@@ -1,4 +1,4 @@
-OS = Mac
+OS = Ubuntu_16.04_LTS
 
 # indicate the Hardware Image file
 HDA_IMG = hdc-0.11.img

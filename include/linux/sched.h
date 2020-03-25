@@ -184,6 +184,8 @@ __asm__("cmpl %%ecx,current\n\t" \
 	::"m" (*&__tmp.a),"m" (*&__tmp.b), \
 	"d" (_TSS(n)),"c" ((long) task[n])); \
 }
+// Here is a reference to see the history of switch_to of Linux:
+// https://sudonull.com/post/1409-The-evolution-of-x86-context-switching-in-Linux
 
 #define PAGE_ALIGN(n) (((n)+0xfff)&0xfffff000)
 
