@@ -79,6 +79,10 @@ int sys_sigaction(int signum, const struct sigaction * action,
 	return 0;
 }
 
+/* 
+ * When an expected signal comes, do_signal() is executed.
+ * The user process will execute corresponding sa_handler() first, then back to where it is switched out.
+ */
 void do_signal(long signr,long eax, long ebx, long ecx, long edx,
 	long fs, long es, long ds,
 	long eip, long cs, long eflags,
@@ -101,6 +105,7 @@ void do_signal(long signr,long eax, long ebx, long ecx, long edx,
 	}
 	if (sa->sa_flags & SA_ONESHOT)
 		sa->sa_handler = NULL;
+	// set eip register to sa_handler() and setup the stack of user process 
 	*(&eip) = sa_handler;
 	longs = (sa->sa_flags & SA_NOMASK)?7:8;
 	*(&esp) -= longs;
@@ -108,7 +113,7 @@ void do_signal(long signr,long eax, long ebx, long ecx, long edx,
 	tmp_esp=esp;
 	put_fs_long((long) sa->sa_restorer,tmp_esp++);
 	put_fs_long(signr,tmp_esp++);
-	if (!(sa->sa_flags & SA_NOMASK))
+	if (!(sa->sa_flags & SA_NOMASK)) // This determines 7 or 8
 		put_fs_long(current->blocked,tmp_esp++);
 	put_fs_long(eax,tmp_esp++);
 	put_fs_long(ecx,tmp_esp++);

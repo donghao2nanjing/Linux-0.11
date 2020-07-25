@@ -9,6 +9,5 @@ boot/setup
 *.o
 *.a
 tools/system
-.vscode
 
 

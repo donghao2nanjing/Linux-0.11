@@ -26,6 +26,9 @@ $ gdb tools/system
 (gdb) c
 ```
 
+Besides the raw gdb commands, you can use vscode to debug the kernel code step by step, *GDB Debug* extension is recommended. The configuration file is attached in folder *.vscode*.
+![VSCode debugging](doc/vsc_dbg.png)
+
 ## 2. Build on Mac OS X
 
 ### 2.1. Mac OS X Setup
@@ -55,3 +58,9 @@ same as section 1.2
 
 ## 3. Build on Windows
 todo...
+
+## 4. References
+
+1. [Evolution of context-switch](https://sudonull.com/post/1409-The-evolution-of-x86-context-switching-in-Linux)
+2. [Real-time signals](https://www.linuxprogrammingblog.com/all-about-linux-signals?page=9)
+3. [Read Linux 0.11](https://github.com/theanarkh/read-linux-0.11)
